@@ -1,0 +1,28 @@
+# Site-specific settings: how this machine runs the Synopsys tools.
+
+tools:
+  # setup: shell command run before the tool, e.g. `module load synopsys/spx` or
+  #        `source /opt/synopsys/env.sh`; leave empty if the tool is already on PATH.
+  # command: the executable.
+  spx:
+    setup: ''   # e.g. module load spx/W-2024.09-SP1
+    command: spx
+  svisual:
+    setup: ''   # e.g. module load sentaurus
+    command: svisual
+    # seconds a step may go with no console output before svisual is taken as hung (it can hang
+    # after a crash instead of exiting) and killed; vis restarts it from that step, once
+    step_timeout: 300
+  sprocess:
+    setup: ''   # e.g. module load sentaurus
+    command: sprocess
+
+# Display for svisual to export images
+display:
+  xvnc: /usr/bin/Xvnc          # empty to skip
+  numbers: [400, 999]          # display numbers to pick a free one from
+
+# zstd level for the per-step tdr files: sim compresses each one (to <stem>.tdr.zst, ~90x
+# smaller) as soon as spx moves on to the next step; vis and sprocess-check decompress one at
+# a time. 0 keeps plain .tdr files. By hand: zstd -d -k outputs/<tech>/tdr/<stem>.tdr.zst
+tdr_zstd_level: 10

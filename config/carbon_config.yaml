@@ -1,0 +1,183 @@
+# Carbon per step for each process area. A step's carboneda_process_area (flow CSV) is a
+# key of energy_per_step_kwh; input gases apply to steps of the area they are
+# listed under.
+
+# EPW = (tool energy + facility overhead energy) x ci_fab_kgco2e_per_kwh,
+# with facility overhead energy = tool energy x facility_overhead_fraction.
+ci_fab_kgco2e_per_kwh: 0.43
+facility_overhead_fraction: 0.4   # fab energy beyond the tools per kWh of tool energy
+
+# Tool energy per step (litho steps name their tool: EUV, ArF-i, ArF, KrF, Hg).
+energy_per_step_kwh:
+  Dry_etch: 1.33
+  RIE: 1.33
+  Cryo_etch: 0.835
+  HAR_etch: 1.33
+  WLP3_etch: 5.33
+  WLP4_etch: 5.33
+  WLP5_etch: 2.67
+  WLP6_etch: 1.33
+  WLP7_etch: 1.33
+  WLP8_etch: 1.33
+  Ion_implantation: 1.33
+  Diffusion: 1.33
+  Metallization: 2.0
+  Wet_etch: 0.28
+  Wafer_clean: 0.28
+  Resist: 0.28
+  CMP: 0.28
+  Deposition: 1.09
+  Deposition_stack: 0.545
+  CVD: 1.09
+  EUV: 3.25
+  ArF-i: 0.36
+  ArF: 0.33
+  KrF: 0.33
+  Hg: 0.33
+  # spx steps with no fab step of their own: the extra spx steps one fab step needs (an etch spx
+  # models in two), or modeling helpers. Not counted (below), and no input gases.
+  Spx_only: 0.0
+
+# Process areas left out of the step counts (totals.csv steps, by_module.csv, by_area.csv, the report),
+# like carrier wafers and shape flips. Their rows still run in spx, get a report page and
+# keep their carbon (a substrate step's wafer MPW); totals.csv gives them as uncounted_steps.
+uncounted_process_areas: [Wafer, Spx_only]
+
+# Steps one step of each process area counts as in the step counts (default 1); half-steps match
+# their half energy_per_step_kwh. Sums are rounded up to whole steps.
+process_area_step_count:
+  HAR_etch: 0.5
+  Deposition_stack: 0.5
+
+# Gas MPW: upstream production of the input process gases, kg of gas per step x
+# kgCO2e per kg. Counted in MPW alongside the deposited materials and wafer from materials.yaml;
+# gpw below uses kg_gas for the direct emissions (GPW).
+input_gases_per_step:
+  CVD:
+    NF3: {kg_gas: 0.00254, kgco2e_per_kg_gas: 12.5}
+  Deposition_stack:
+    NF3: {kg_gas: 0.00127, kgco2e_per_kg_gas: 12.5}
+  HAR_etch:
+    C4F8: {kg_gas: 0.0001602902585, kgco2e_per_kg_gas: 12.1}
+    SF6: {kg_gas: 0.000438909073, kgco2e_per_kg_gas: 125.6}
+  WLP3_etch:
+    C4F8: {kg_gas: 0.000641161034, kgco2e_per_kg_gas: 12.1}
+    SF6: {kg_gas: 0.001755636292, kgco2e_per_kg_gas: 125.6}
+  WLP4_etch:
+    C4F8: {kg_gas: 0.000641161034, kgco2e_per_kg_gas: 12.1}
+    SF6: {kg_gas: 0.001755636292, kgco2e_per_kg_gas: 125.6}
+  WLP5_etch:
+    C4F8: {kg_gas: 0.000320580517, kgco2e_per_kg_gas: 12.1}
+    SF6: {kg_gas: 0.000877818146, kgco2e_per_kg_gas: 125.6}
+  WLP6_etch:
+    C4F8: {kg_gas: 0.0001602902585, kgco2e_per_kg_gas: 12.1}
+    SF6: {kg_gas: 0.000438909073, kgco2e_per_kg_gas: 125.6}
+  WLP7_etch:
+    C4F8: {kg_gas: 0.0001602902585, kgco2e_per_kg_gas: 12.1}
+    SF6: {kg_gas: 0.000438909073, kgco2e_per_kg_gas: 125.6}
+  WLP8_etch:
+    C4F8: {kg_gas: 0.0001602902585, kgco2e_per_kg_gas: 12.1}
+    SF6: {kg_gas: 0.000438909073, kgco2e_per_kg_gas: 125.6}
+  RIE:
+    C4F8: {kg_gas: 0.0001602902585, kgco2e_per_kg_gas: 12.1}
+    SF6: {kg_gas: 0.000438909073, kgco2e_per_kg_gas: 125.6}
+  Cryo_etch:
+    CF4: {kg_gas: 0.00002410, kgco2e_per_kg_gas: 12.6}
+
+# GPW: direct process-gas emissions per step, after abatement.
+#
+# A step uses the input gases listed under its process area (carboneda_process_area) in
+# input_gases_per_step above, kg_gas of each per step. Of each one:
+#   unused gas  kg_gas x (1 - utilization) x (1 - abatement_rate) x GWP
+#   byproducts  kg_gas x byproduct kg per kg gas x (1 - abatement_rate of the byproduct)
+#               x GWP of the byproduct
+# utilization:    fraction of the input gas the process consumes; the rest is exhausted
+# byproducts:     gases the process forms, kg per kg of input gas
+# abatement_rate: fraction of an exhausted gas the abatement system destroys
+gpw:
+  defaults:
+    utilization: 1.0
+    abatement_rate: 0.9
+
+  # Per process area: each input gas's utilization and the byproducts it forms.
+  RIE:
+    C4F8:
+      utilization: 0.82
+      byproducts: {CF4: 0.045, C2F6: 0.031, C4F6: 0.018, CHF3: 0.012, CH2F2: 0.0023}
+    SF6:
+      utilization: 0.71
+      byproducts: {CF4: 0.04, C2F6: 0.044, CHF3: 0.0037, CH2F2: 0.000029}
+  HAR_etch:
+    C4F8:
+      utilization: 0.82
+      byproducts: {CF4: 0.045, C2F6: 0.031, C4F6: 0.018, CHF3: 0.012, CH2F2: 0.0023}
+    SF6:
+      utilization: 0.71
+      byproducts: {CF4: 0.04, C2F6: 0.044, CHF3: 0.0037, CH2F2: 0.000029}
+  WLP3_etch:
+    C4F8:
+      utilization: 0.82
+      byproducts: {CF4: 0.045, C2F6: 0.031, C4F6: 0.018, CHF3: 0.012, CH2F2: 0.0023}
+    SF6:
+      utilization: 0.71
+      byproducts: {CF4: 0.04, C2F6: 0.044, CHF3: 0.0037, CH2F2: 0.000029}
+  WLP4_etch:
+    C4F8:
+      utilization: 0.82
+      byproducts: {CF4: 0.045, C2F6: 0.031, C4F6: 0.018, CHF3: 0.012, CH2F2: 0.0023}
+    SF6:
+      utilization: 0.71
+      byproducts: {CF4: 0.04, C2F6: 0.044, CHF3: 0.0037, CH2F2: 0.000029}
+  WLP5_etch:
+    C4F8:
+      utilization: 0.82
+      byproducts: {CF4: 0.045, C2F6: 0.031, C4F6: 0.018, CHF3: 0.012, CH2F2: 0.0023}
+    SF6:
+      utilization: 0.71
+      byproducts: {CF4: 0.04, C2F6: 0.044, CHF3: 0.0037, CH2F2: 0.000029}
+  WLP6_etch:
+    C4F8:
+      utilization: 0.82
+      byproducts: {CF4: 0.045, C2F6: 0.031, C4F6: 0.018, CHF3: 0.012, CH2F2: 0.0023}
+    SF6:
+      utilization: 0.71
+      byproducts: {CF4: 0.04, C2F6: 0.044, CHF3: 0.0037, CH2F2: 0.000029}
+  WLP7_etch:
+    C4F8:
+      utilization: 0.82
+      byproducts: {CF4: 0.045, C2F6: 0.031, C4F6: 0.018, CHF3: 0.012, CH2F2: 0.0023}
+    SF6:
+      utilization: 0.71
+      byproducts: {CF4: 0.04, C2F6: 0.044, CHF3: 0.0037, CH2F2: 0.000029}
+  WLP8_etch:
+    C4F8:
+      utilization: 0.82
+      byproducts: {CF4: 0.045, C2F6: 0.031, C4F6: 0.018, CHF3: 0.012, CH2F2: 0.0023}
+    SF6:
+      utilization: 0.71
+      byproducts: {CF4: 0.04, C2F6: 0.044, CHF3: 0.0037, CH2F2: 0.000029}
+  CVD:
+    NF3:
+      utilization: 0.80
+      byproducts: {CF4: 0.046, C2F6: 0.045, CHF3: 0.025, CH2F2: 0.00086, CH3F: 0.008}
+  Deposition_stack:
+    NF3:
+      utilization: 0.80
+      byproducts: {CF4: 0.046, C2F6: 0.045, CHF3: 0.025, CH2F2: 0.00086, CH3F: 0.008}
+  Cryo_etch:
+    CF4:
+      utilization: 0.35
+      byproducts: {C2F6: 0.079, C4F8: 0.00063, CHF3: 0.011, CH3F: 0.008}
+
+  # GWP (kgCO2e/kg, 100-yr) of every gas that can be emitted, and its abatement_rate
+  # where it differs from the default.
+  gases:
+    CF4:   {gwp_kgco2e_per_kg: 7390, abatement_rate: 0.89}
+    C2F6:  {gwp_kgco2e_per_kg: 12200, abatement_rate: 0.95}
+    C4F6:  {gwp_kgco2e_per_kg: 0, abatement_rate: 0.98}
+    C4F8:  {gwp_kgco2e_per_kg: 10300, abatement_rate: 0.98}
+    CHF3:  {gwp_kgco2e_per_kg: 14800, abatement_rate: 0.98}
+    CH2F2: {gwp_kgco2e_per_kg: 675, abatement_rate: 0.98}
+    CH3F:  {gwp_kgco2e_per_kg: 116, abatement_rate: 0.98}
+    NF3:   {gwp_kgco2e_per_kg: 17200, abatement_rate: 0.95}
+    SF6:   {gwp_kgco2e_per_kg: 22800, abatement_rate: 0.95}

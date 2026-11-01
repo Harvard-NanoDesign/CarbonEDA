@@ -1,0 +1,41 @@
+seq,row_type,route,flow,module,step,step_type,carboneda_process_area,BondTopStep,Flip,MaterialFilter,Rate,Time,MaterialDependent,Thickness,LayerNames,Polarity,ColumnSizeX,ColumnSizeY,EtchstopMaterialsFilter,ExposedOnly,Offset
+10,module,Donor_Wafer,Donor,Donor Wafer,,,,,,,,,,,,,,,,,
+20,step,Donor_Wafer,Donor,Donor Wafer,substrate,substrate,Wafer,,,Silicon,,,,0.1 um,,,0.005 um,0.005 um,,,
+30,step,Donor_Wafer,Donor,Donor Wafer,SiGe etch stop,depo_anisotropic,CVD,,,SiGe,1.0 um min^-1,0.01 min,,,,,,,,,
+40,step,Donor_Wafer,Donor,Donor Wafer,Si channel layer,depo_anisotropic,CVD,,,Silicon,1.0 um min^-1,0.02 min,,,,,,,,,
+50,step,Donor_Wafer,Donor,Donor Wafer,Bonding oxide,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.02 min,,,,,,,,,
+60,module,,bond_flip,Wafer Start,,,,,,,,,,,,,,,,,
+70,step,,bond_flip,Wafer Start,substrate,substrate,Wafer,,,Silicon,,,,0.2 um,,,0.005 um,0.005 um,,,
+80,module,,bond_flip,Bottom Tier,,,,,,,,,,,,,,,,,
+90,step,,bond_flip,Bottom Tier,ILD,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.04 min,,,,,,,,,
+100,step,,bond_flip,Bottom Tier,Bottom metal litho,litho_patterning,ArF-i,,,,,,,,1:0,,,,,,
+110,step,,bond_flip,Bottom Tier,Bottom metal trench etch,etch_anisotropic,RIE,,,,,0.03 min,SiO2 => 1.0 um min^-1,,,,,,,,
+120,step,,bond_flip,Bottom Tier,Resist strip,etch_strip,Wet_etch,,,Photoresist,,,,,,,,,,False,
+130,step,,bond_flip,Bottom Tier,Cu fill,depo_isotropic,Metallization,,,Copper,1.0 um min^-1,0.025 min,,,,,,,,,
+140,step,,bond_flip,Bottom Tier,Cu CMP,etch_cmp,Wet_etch,,,Copper,,,,,,,,,SiO2,,0.0 um
+150,step,,bond_flip,Bottom Tier,Bonding oxide,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.01 min,,,,,,,,,
+160,module,,bond_flip,Layer Transfer,,,,,,,,,,,,,,,,,
+170,step,,bond_flip,Layer Transfer,Bond donor wafer,bond_structure,Wafer,Donor_Wafer,True,,,,,,,,,,,,
+180,step,,bond_flip,Layer Transfer,Donor substrate CMP,etch_cmp,Wet_etch,,,Silicon,,,,,,,,,SiGe,,0.0 um
+190,step,,bond_flip,Layer Transfer,Etch stop removal,etch_cmp,Wet_etch,,,SiGe,,,,,,,,,Silicon,,0.0 um
+200,module,,bond_flip,Top Tier,,,,,,,,,,,,,,,,,
+210,step,,bond_flip,Top Tier,Island litho,litho_patterning,ArF-i,,,,,,,,2:0,Positive,,,,,
+220,step,,bond_flip,Top Tier,Island etch,etch_anisotropic,RIE,,,,,0.02 min,Silicon => 1.0 um min^-1,,,,,,,,
+230,step,,bond_flip,Top Tier,Resist strip,etch_strip,Wet_etch,,,Photoresist,,,,,,,,,,False,
+240,step,,bond_flip,Top Tier,ILD,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.04 min,,,,,,,,,
+250,step,,bond_flip,Top Tier,ILD CMP,etch_cmp,Wet_etch,,,SiO2,,,,,,,,,Silicon,,0.02 um
+260,module,,bond_flip,Top Metal,,,,,,,,,,,,,,,,,
+270,step,,bond_flip,Top Metal,Top metal litho,litho_patterning,ArF-i,,,,,,,,3:0,,,,,,
+280,step,,bond_flip,Top Metal,Top metal trench etch,etch_anisotropic,RIE,,,,,0.02 min,SiO2 => 1.0 um min^-1,,,,,,,,
+290,step,,bond_flip,Top Metal,Resist strip,etch_strip,Wet_etch,,,Photoresist,,,,,,,,,,False,
+300,step,,bond_flip,Top Metal,Cu fill,depo_isotropic,Metallization,,,Copper,1.0 um min^-1,0.025 min,,,,,,,,,
+310,step,,bond_flip,Top Metal,Cu CMP,etch_cmp,Wet_etch,,,Copper,,,,,,,,,SiO2,,0.0 um
+320,module,,bond_flip,Bond Carrier Wafer,,,,,,,,,,,,,,,,,
+330,step,,bond_flip,Bond Carrier Wafer,Bonding dielectric,depo_anisotropic,CVD,,,SiCN,1.0 um min^-1,0.02 min,,,,,,,,,
+340,step,,bond_flip,Bond Carrier Wafer,Bond carrier wafer,bond_structure,Wafer,Example_Carrier,True,,,,,,,,,,,,
+350,module,,bond_flip,Wafer Thin,,,,,,,,,,,,,,,,,
+360,step,,bond_flip,Wafer Thin,Flip stack,flip_structure,Wafer,,,,,,,,,,,,,,
+370,step,,bond_flip,Wafer Thin,Backside thinning CMP,etch_cmp,Wet_etch,,,Silicon,,,,,,,,,SiO2,,0.0 um
+380,step,,bond_flip,Wafer Thin,Backside passivation,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.01 min,,,,,,,,,
+390,module,,bond_flip,Final Flip,,,,,,,,,,,,,,,,,
+400,step,,bond_flip,Final Flip,Flip stack,flip_structure,Wafer,,,,,,,,,,,,,,

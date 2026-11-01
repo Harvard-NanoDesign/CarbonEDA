@@ -1,0 +1,527 @@
+# Wafer diameter used by MPW scaling: per-300mm-wafer values are scaled by wafer
+# area to this diameter. Yield gives carbon per good wafer (and die) in totals.
+wafer_diameter_mm: 300
+yield: 0.9
+
+# Materials: density and GWP factor per deposited material, or a per-300mm-wafer value.
+# spx_colors: the spx materials of this kind and their render color (empty = spx default);
+# generate writes them to materials.py, and carbon also recognizes them as aliases.
+# gwp_factor_gco2e_per_g: 0 marks additional materials for future studies.
+ACL:
+  aliases:
+    - ACL
+  density_g_per_cm3: 2.0
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    AmorphousCarbon: '#3e2723'
+    Carbon: '#4e342e'
+
+Al:
+  aliases:
+    - Al
+    - Aluminium
+  density_g_per_cm3: 2.7
+  gwp_factor_gco2e_per_g: 10.72688123
+  spx_colors:
+    Aluminum: '#bdbdbd'
+
+AlO:
+  aliases:
+    - AluminumOxide
+    - AluminiumOxide
+    - Al2O3
+  density_g_per_cm3: 3.99
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    AlO: '#74b36b'
+
+AlCu:
+  aliases:
+    - AlCu
+    - Al(Cu)
+    - AluminumCopper
+    - AluminiumCopper
+  density_g_per_cm3: 5.83
+  gwp_factor_gco2e_per_g: 8.408496924
+
+Co:
+  aliases:
+    - Co
+  density_g_per_cm3: 8.9
+  gwp_factor_gco2e_per_g: 44.50004513
+  spx_colors:
+    Cobalt: '#ffaaff'
+
+CSOH:
+  aliases:
+    - CHM
+    - CarbonHardMask
+    - CHM/CSOH
+  density_g_per_cm3: 2.2
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    CSOH: '#ffa500'
+    SOH: '#bcaaa4'
+    SiSOH: '#808000'
+
+Cu:
+  aliases:
+    - Cu
+    - Copper/Cu
+  density_g_per_cm3: 8.96
+  gwp_factor_gco2e_per_g: 6.090112618
+  spx_colors:
+    Copper: '#ff9100'
+
+HfOx:
+  aliases:
+    - HfOx
+    - HfO2/HfOx
+  density_g_per_cm3: 9.69
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    HfO2: '#ffd600'
+
+IGZO:
+  aliases:
+    - IGZO
+  density_g_per_cm3: 6.0
+  gwp_factor_gco2e_per_g: 196.31
+  spx_colors:
+    IGZO: '#2e7d32'
+
+LaOx:
+  density_g_per_cm3: 6.51
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    LaOx: '#ff8a80'
+
+Mo:
+  aliases:
+    - Mo
+  density_g_per_cm3: 10.2
+  gwp_factor_gco2e_per_g: 16.40685422
+  spx_colors:
+    Molybdenum:
+
+NiPt:
+  aliases:
+    - NiPt
+    - NickelPlatinum
+  density_g_per_cm3: 18.6
+  gwp_factor_gco2e_per_g: 19053.34149
+  spx_colors:
+    NiPt: '#90a4ae'
+
+NiSi:
+  aliases:
+    - NiSi
+  density_g_per_cm3: 5.97
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    NiSi: '#b0bec5'
+
+Polysilicon:
+  aliases:
+    - Polysilicon
+    - Poly-Si
+    - Poly-Si/Polysilicon
+  density_g_per_cm3: 2.33
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    PolySilicon: '#ff3d00'
+
+PSG:
+  aliases:
+    - PSG
+  density_g_per_cm3: 2.5
+  gwp_factor_gco2e_per_g: 0
+
+Resist:
+  aliases:
+    - Resist
+    - PR/ARC
+    - PGMEA
+  density_g_per_cm3: 0.97
+  gwp_factor_gco2e_per_g: 4.2
+  spx_colors:
+    BARC: '#e6e672'
+    Photoresist: '#808080'
+
+Ru:
+  aliases:
+    - Ruthenium
+  density_g_per_cm3: 12.1
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    Ru: '#dd49dd'
+
+Si:
+  aliases:
+    - Si
+    - a-Si
+    - c-Si
+  density_g_per_cm3: 2.29
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    'A Silicon': '#55ff00'
+    AmorphousSilicon:
+    Silicon: '#78909c'
+    aSi: '#800080'
+
+SiBN:
+  density_g_per_cm3: 2.95
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiBN: '#00ff00'
+
+SiCN:
+  density_g_per_cm3: 3.33
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiCN: '#a1887f'
+
+SiCNH:
+  aliases:
+    - SiCNH
+  density_g_per_cm3: 2.2
+  gwp_factor_gco2e_per_g: 0
+
+SiGe:
+  density_g_per_cm3: 3.0
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiGe: '#ff00ff'
+
+SiGeB:
+  density_g_per_cm3: 4.12
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiGeB: '#c181c1'
+
+SiN:
+  density_g_per_cm3: 3.17
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    Nitride: '#dce775'
+    'Nitride 2': '#b6c296'
+    Nitride2: '#c2c291'
+    NitrideLPCVD: '#e6ee9c'
+    NitridePECVD: '#d4e157'
+    SiN: '#55aaff'
+    SiliconN: '#00695c'
+
+SiO:
+  aliases:
+    - SiO
+  density_g_per_cm3: 2.13
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    ILD: '#c5e1a5'
+    Oxide: '#00e5ff'
+    Oxide2: '#0097a7'
+    Oxide3: '#00ffff'
+    Oxide4: '#800000'
+    Oxide5: '#ffaaff'
+    OxideCVD: '#b2ebf2'
+    OxideILD: '#4fc3f7'
+    OxidePMD: '#80deea'
+    OxideSpacer: '#e1f5fe'
+    OxideThermal: '#55aaff'
+    SiO2: '#00e5ff'
+
+SiOC:
+  density_g_per_cm3: 2.0
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiOC: '#76ff03'
+    SiOC2: '#cc4400'
+
+SiOCN:
+  density_g_per_cm3: 1.8
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiOCN: '#76ffee'
+
+SiON:
+  density_g_per_cm3: 2.81
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiON: '#ff0000'
+    SiONHM: '#ff8a80'
+
+Ta:
+  density_g_per_cm3: 16.7
+  gwp_factor_gco2e_per_g: 170.8356
+  spx_colors:
+    Ta: '#651fff'
+    Tantalum: '#aaff7f'
+
+TaN:
+  density_g_per_cm3: 13.7
+  gwp_factor_gco2e_per_g: 25.81588696
+  spx_colors:
+    TaN: '#d500f9'
+    TaN1: '#be3fbe'
+
+TEOS:
+  aliases:
+    - TEOS
+  density_g_per_cm3: 0.94
+  gwp_factor_gco2e_per_g: 2.859521436
+  spx_colors:
+    OxideTEOS: '#00acc1'
+
+Ti:
+  density_g_per_cm3: 4.5
+  gwp_factor_gco2e_per_g: 47.63335371
+  spx_colors:
+    Ti: '#0000ff'
+    Titanium: '#ff0000'
+
+TiAl:
+  aliases:
+    - TiAl
+    - Ti(Al)
+    - TitaniumAluminum
+    - TitaniumAluminium
+  density_g_per_cm3: 3.6
+  gwp_factor_gco2e_per_g: 29.18011747
+  spx_colors:
+    TiAl: '#9575cd'
+
+TiN:
+  density_g_per_cm3: 5.21
+  gwp_factor_gco2e_per_g: 43.97783202
+  spx_colors:
+    TiN: '#000080'
+    TiN1: '#ffca07'
+    TiN2: '#fcc706'
+
+TiSiP:
+  aliases:
+    - TiSiP
+  density_g_per_cm3: 2.936666667
+  gwp_factor_gco2e_per_g: 0
+
+W:
+  density_g_per_cm3: 19.3
+  gwp_factor_gco2e_per_g: 75.81493114
+  spx_colors:
+    Tungsten: '#00b0ff'
+    Tungsten1: '#008dd3'
+    W: '#55ff7f'
+
+Wafer:
+  aliases:
+    - Wafer
+    - SiliconWafer
+    - 300mmWafer
+  mpw_gco2e_per_300mm_wafer: 26000
+
+WN:
+  aliases:
+    - TungstenNitride
+  density_g_per_cm3: 17.8
+  gwp_factor_gco2e_per_g: 76.82885309
+  spx_colors:
+    WN: '#aaff00'
+
+WSiN:
+  aliases:
+    - TungstenSiliconNitride
+  density_g_per_cm3: 16.1
+  gwp_factor_gco2e_per_g: 73.22518661
+  spx_colors:
+    WSiN: '#00ff00'
+
+ZrAlO:
+  density_g_per_cm3: 4.815
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    ZrAlO: '#008080'
+
+ZrHfAlO:
+  density_g_per_cm3: 6.44
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    ZrHfAlO: '#800000'
+
+ZrHfO:
+  density_g_per_cm3: 7.685
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    ZrHfO: '#ff007f'
+
+# Additional materials for future studies.
+
+AlN:
+  density_g_per_cm3: 3.26
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    AlN: '#800080'
+
+CESL:
+  density_g_per_cm3: 3.17
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    CESL: '#55aaff'
+
+CoSi:
+  density_g_per_cm3: 4.95
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    CoSi:
+
+Dopant:
+  density_g_per_cm3: 0
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    Dopant: '#fff176'
+
+Gas:
+  density_g_per_cm3: 0
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    Gas: '#e3f2fd'
+
+GeOx:
+  density_g_per_cm3: 4.25
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    GeOx: '#00ff00'
+
+HfLaOx:
+  density_g_per_cm3: 9.0
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    HfLaOx: '#800080'
+    HfO2:La: '#800080'
+
+LowK:
+  density_g_per_cm3: 1.3
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    LowK: '#64dd17'
+
+OxidePMD2:
+  density_g_per_cm3: 2.13
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    OxidePMD2: '#4dd0e1'
+
+PadOxide:
+  density_g_per_cm3: 2.13
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    PadOxide: '#aa0000'
+
+SLAM:
+  density_g_per_cm3: 1.2
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SLAM:
+
+SOC:
+  density_g_per_cm3: 1.1
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SOC: '#00ff00'
+
+'Si:P':
+  density_g_per_cm3: 2.33
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    'Si:P': '#008080'
+
+SiC:
+  density_g_per_cm3: 3.21
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiC: '#181212'
+
+SiCOH:
+  density_g_per_cm3: 1.3
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiCOH: '#b39ddb'
+    SiCOH2: '#b39ddb'
+
+SiGe2:
+  density_g_per_cm3: 3.0
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiGe2: '#d500f9'
+
+SiGeB2:
+  density_g_per_cm3: 4.12
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiGeB2: '#800080'
+
+SiliconP:
+  density_g_per_cm3: 2.33
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiliconP: '#008080'
+
+pSilicon:
+  density_g_per_cm3: 2.33
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    pSilicon: '#26a69a'
+
+SiliconSiGeB1:
+  density_g_per_cm3: 4.12
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    SiliconSiGeB1: '#d6d66a'
+
+TiAlC:
+  density_g_per_cm3: 4.5
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    TiAlC: '#800080'
+
+TiAlN:
+  density_g_per_cm3: 4.6
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    TiAlN: '#ffa000'
+    TiAlN1: '#faa700'
+
+TiO:
+  density_g_per_cm3: 4.23
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    TiO: '#ffaa7f'
+
+TiON:
+  density_g_per_cm3: 4.5
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    TiON: '#ffaa7f'
+
+TiSi:
+  density_g_per_cm3: 4.04
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    TiSi: '#a83800'
+
+Ti_Silicide:
+  density_g_per_cm3: 4.04
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    Ti_Silicide: '#0055ff'
+
+WSi:
+  density_g_per_cm3: 9.3
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    WSi: '#800080'
+
+ZnOx:
+  density_g_per_cm3: 5.61
+  gwp_factor_gco2e_per_g: 0
+  spx_colors:
+    ZnOx:
