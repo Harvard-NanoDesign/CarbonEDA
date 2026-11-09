@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "carbon_eda"
+dynamic = ["version"]
+description = "Automation tool for carbon footprint modeling of integrated circuit fabrication with 3D process flow simulations"
+authors = [{ name = "David Kong" }]
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = ["pyyaml>=5.4", "matplotlib>=3.7", "gdstk>=0.9", "h5py>=3"]
+
+[project.scripts]
+carbon-eda = "carbon_eda.__main__:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "carbon_eda.__version__" }
+
+[tool.setuptools]
+packages = ["carbon_eda", "carbon_eda.carbon"]
+
+[tool.setuptools.package-data]
+carbon_eda = ["*.tcl"]
