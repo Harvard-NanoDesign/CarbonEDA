@@ -1,0 +1,7 @@
+# Python dependencies (the same as pyproject.toml): pip install -r requirements.txt
+# SPX, Sentaurus Visual (svisual) and zstd are separate tools, set up in config/tools.yaml.
+pyyaml>=5.4
+matplotlib>=3.7
+numpy>=1.21
+gdstk>=0.9
+h5py>=3

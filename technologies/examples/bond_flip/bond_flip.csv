@@ -1,0 +1,41 @@
+seq,row_type,route,flow,module,step,step_type,carboneda_process_area,BondTopStep,Flip,MaterialFilter,Rate,Time,MaterialDependent,Thickness,LayerNames,Polarity,ColumnSizeX,ColumnSizeY,EtchstopMaterialsFilter,ExposedOnly,Offset
+0.1,module,Donor_Wafer,Donor,Donor Wafer,,,,,,,,,,,,,,,,,
+0.2,step,Donor_Wafer,Donor,Donor Wafer,Spx #1: substrate,substrate,Wafer,,,Silicon,,,,0.1 um,,,0.005 um,0.005 um,,,
+1,step,Donor_Wafer,Donor,Donor Wafer,Step #1: SiGe etch stop,depo_anisotropic,CVD,,,SiGe,1.0 um min^-1,0.01 min,,,,,,,,,
+2,step,Donor_Wafer,Donor,Donor Wafer,Step #2: Si channel layer,depo_anisotropic,CVD,,,Silicon,1.0 um min^-1,0.02 min,,,,,,,,,
+3,step,Donor_Wafer,Donor,Donor Wafer,Step #3: Bonding oxide,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.02 min,,,,,,,,,
+3.1,module,,bond_flip,Wafer Start,,,,,,,,,,,,,,,,,
+3.2,step,,bond_flip,Wafer Start,Spx #2: substrate,substrate,Wafer,,,Silicon,,,,0.2 um,,,0.005 um,0.005 um,,,
+3.3,module,,bond_flip,Bottom Tier,,,,,,,,,,,,,,,,,
+4,step,,bond_flip,Bottom Tier,Step #4: ILD,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.04 min,,,,,,,,,
+5,step,,bond_flip,Bottom Tier,Step #5: Bottom metal litho,litho_patterning,ArF-i,,,,,,,,1:0,,,,,,
+6,step,,bond_flip,Bottom Tier,Step #6: Bottom metal trench etch,etch_anisotropic,RIE,,,,,0.03 min,SiO2 => 1.0 um min^-1,,,,,,,,
+7,step,,bond_flip,Bottom Tier,Step #7: Resist strip,etch_strip,Wet_etch,,,Photoresist,,,,,,,,,,False,
+8,step,,bond_flip,Bottom Tier,Step #8: Cu fill,depo_isotropic,Metallization,,,Copper,1.0 um min^-1,0.025 min,,,,,,,,,
+9,step,,bond_flip,Bottom Tier,Step #9: Cu CMP,etch_cmp,Wet_etch,,,Copper,,,,,,,,,SiO2,,0.0 um
+10,step,,bond_flip,Bottom Tier,Step #10: Bonding oxide,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.01 min,,,,,,,,,
+10.1,module,,bond_flip,Layer Transfer,,,,,,,,,,,,,,,,,
+10.2,step,,bond_flip,Layer Transfer,Spx #3: Bond donor wafer,bond_structure,Wafer,Donor_Wafer,True,,,,,,,,,,,,
+11,step,,bond_flip,Layer Transfer,Step #11: Donor substrate CMP,etch_cmp,Wet_etch,,,Silicon,,,,,,,,,SiGe,,0.0 um
+12,step,,bond_flip,Layer Transfer,Step #12: Etch stop removal,etch_cmp,Wet_etch,,,SiGe,,,,,,,,,Silicon,,0.0 um
+12.1,module,,bond_flip,Top Tier,,,,,,,,,,,,,,,,,
+13,step,,bond_flip,Top Tier,Step #13: Island litho,litho_patterning,ArF-i,,,,,,,,2:0,Positive,,,,,
+14,step,,bond_flip,Top Tier,Step #14: Island etch,etch_anisotropic,RIE,,,,,0.02 min,Silicon => 1.0 um min^-1,,,,,,,,
+15,step,,bond_flip,Top Tier,Step #15: Resist strip,etch_strip,Wet_etch,,,Photoresist,,,,,,,,,,False,
+16,step,,bond_flip,Top Tier,Step #16: ILD,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.04 min,,,,,,,,,
+17,step,,bond_flip,Top Tier,Step #17: ILD CMP,etch_cmp,Wet_etch,,,SiO2,,,,,,,,,Silicon,,0.02 um
+17.1,module,,bond_flip,Top Metal,,,,,,,,,,,,,,,,,
+18,step,,bond_flip,Top Metal,Step #18: Top metal litho,litho_patterning,ArF-i,,,,,,,,3:0,,,,,,
+19,step,,bond_flip,Top Metal,Step #19: Top metal trench etch,etch_anisotropic,RIE,,,,,0.02 min,SiO2 => 1.0 um min^-1,,,,,,,,
+20,step,,bond_flip,Top Metal,Step #20: Resist strip,etch_strip,Wet_etch,,,Photoresist,,,,,,,,,,False,
+21,step,,bond_flip,Top Metal,Step #21: Cu fill,depo_isotropic,Metallization,,,Copper,1.0 um min^-1,0.025 min,,,,,,,,,
+22,step,,bond_flip,Top Metal,Step #22: Cu CMP,etch_cmp,Wet_etch,,,Copper,,,,,,,,,SiO2,,0.0 um
+22.1,module,,bond_flip,Bond Carrier Wafer,,,,,,,,,,,,,,,,,
+23,step,,bond_flip,Bond Carrier Wafer,Step #23: Bonding dielectric,depo_anisotropic,CVD,,,SiCN,1.0 um min^-1,0.02 min,,,,,,,,,
+23.1,step,,bond_flip,Bond Carrier Wafer,Spx #4: Bond carrier wafer,bond_structure,Wafer,Example_Carrier,True,,,,,,,,,,,,
+23.2,module,,bond_flip,Wafer Thin,,,,,,,,,,,,,,,,,
+23.3,step,,bond_flip,Wafer Thin,Spx #5: Flip stack,flip_structure,Wafer,,,,,,,,,,,,,,
+24,step,,bond_flip,Wafer Thin,Step #24: Backside thinning CMP,etch_cmp,Wet_etch,,,Silicon,,,,,,,,,SiO2,,0.0 um
+25,step,,bond_flip,Wafer Thin,Step #25: Backside passivation,depo_anisotropic,CVD,,,SiO2,1.0 um min^-1,0.01 min,,,,,,,,,
+25.1,module,,bond_flip,Final Flip,,,,,,,,,,,,,,,,,
+25.2,step,,bond_flip,Final Flip,Spx #6: Flip stack,flip_structure,Wafer,,,,,,,,,,,,,,

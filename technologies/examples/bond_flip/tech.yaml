@@ -1,0 +1,38 @@
+# bond_flip: a minimal example of a multi-wafer flow (~30 steps, runs in spx in about a minute).
+# Shows both ways to bond a second wafer on top, and flipping the whole stack:
+#   Layer Transfer      bond_structure, BondTopStep = Donor_Wafer: a route built in the flow CSV
+#                       (its route column), bonded face down (Flip), then its substrate removed
+#   Bond Carrier Wafer  bond_structure, BondTopStep = Example_Carrier: a blank carrier wafer that is
+#                       not in the CSV (routes: below); its substrate step is bonded, face down (Flip)
+#   Wafer Thin          flip_structure: the whole stack turned over, then the main substrate thinned
+#   Final Flip          flip_structure: front side up again
+# The layout is a generated test pattern: 1:0 bottom metal line, 2:0 top-tier Si island,
+# 3:0 top metal line.
+# The flow CSV that is run (other CSVs in this folder are not read).
+csv: bond_flip.csv
+# Routes spx runs, in this order; the last is the flow CSV. The ones before it are the carrier
+# wafers its bond_structure steps bond onto (their BondTopStep): each gets the clip below and one
+# substrate step (spx parameters in flow-CSV cell syntax). The donor wafer is a route of the flow
+# CSV itself (route column), so it is not listed here.
+routes:
+  - route: Example_Carrier
+    flow: Carrier
+    module: Wafer Start
+    step: substrate
+    substrate: {MaterialFilter: Silicon, Thickness: 0.1 um, ColumnSizeX: 0.005 um, ColumnSizeY: 0.005 um}
+  - {route: bond_flip}
+layout: bond_flip_layout.gds
+clip:
+  name: example
+  coords: [0.0, 0.0, 0.24, 0.12]   # x0 y0 x1 y1 (um): the whole test pattern
+
+# Set to also report carbon per die.
+die_area_mm2: null
+
+# svisual views for each step (carbon_eda/svisual_render.tcl).
+render:
+  resolution: 1024x768
+  zoom_box: null   # [x0, x1, y0, y1, z0, z1] in um; null = whole structure
+  cuts:   # x through the top metal line, y along it
+    - {axis: x, at: 0.12}
+    - {axis: y, at: 0.06}
